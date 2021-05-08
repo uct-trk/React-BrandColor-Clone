@@ -165,6 +165,62 @@ html, body {
   }
 
   .brands{
-    padding: 25px;
+    padding: 15px;
+    overflow: hidden;
+
+    .brand{
+      border-bottom: 1px solid #ddd;
+      background: #fff;
+      padding: 15px 15px 15px 0px;
+      margin-left: 15px;
+    
+
+      &.selected {
+        border-color: red;
+
+        .brand-colors{
+          span {
+            flex:1;
+            text-indent: 0;
+          }
+        }
+      }
+
+      h5 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        cursor:pointer;
+      }
+
+      &-colors {
+        display: flex;
+
+        span {
+          background: var(--bgColor);
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--textColor);
+          text-indent: -9999px;
+          width:80px;
+          cursor: pointer;
+        }
+      }
+    }
   }
+}
+
+
+.copied{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0099e5;
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 4px;
+  font-size: 16px;
 }
