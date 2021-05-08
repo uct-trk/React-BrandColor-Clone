@@ -12,6 +12,7 @@ function App() {
   const [brands, setBrands] = useState(brandsArray)
   const [selectedBrands, setSelectedBrands] = useState([])
   const [copied, setCopied] = useState(false)
+  const [search, setSearch] = useState("")
 
   // object.keys dizi şeklinde döndürmeyi sağlar
   Object.keys(BrandsData).map(key => {
@@ -22,6 +23,7 @@ function App() {
     console.log(selectedBrands)
   }, [selectedBrands])
 
+  // kopyala işleminde yarım saniye sonra yazı kaybolacak
   useEffect(() => {
     if(copied){
       setTimeout(() => {
@@ -30,8 +32,13 @@ function App() {
     }
   },[copied])
 
+  // search değiştiğinde filtreleme
+  useEffect(() => {
+    setBrands(brandsArray.filter(brand => brand.title.toLowerCase().includes(search)))
+  },[search])
+
   const data = {
-    brands, selectedBrands, setSelectedBrands, setCopied
+    brands, selectedBrands, setSelectedBrands, setCopied,search,setSearch
   }
 
   return (

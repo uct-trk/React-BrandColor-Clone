@@ -3,8 +3,7 @@ import {getContrastYIQ} from '../generator'
 import MainContext from '../MainContext'
 import ClipboardButton from 'react-clipboard.js'
 
-
-export const Brand = ({brand}) => {
+const Brand = ({brand}) => {
 
     const {setSelectedBrands, selectedBrands, setCopied} = useContext(MainContext)
 
@@ -12,7 +11,7 @@ export const Brand = ({brand}) => {
         if(selectedBrands.includes(brand.slug)){
             setSelectedBrands(selectedBrands.filter(slug => slug !== brand.slug))
         } else {
-            selectedBrands([...selectedBrands, brand.slug])
+            setSelectedBrands([...selectedBrands, brand.slug])
         }
     }
 
@@ -33,3 +32,5 @@ export const Brand = ({brand}) => {
         </div>
     )
 }
+
+export default Brand
