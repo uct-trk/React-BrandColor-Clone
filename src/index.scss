@@ -127,6 +127,8 @@ html, body {
 .content {
   flex: 1;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 
   .header{
     height: 60px;
@@ -137,6 +139,21 @@ html, body {
     position: sticky;
     top: 0;
     background: #fff;
+
+    .back-btn{
+      background: transparent;
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin-left: 5px;
+      cursor: pointer;
+      transition: all .5s ease;
+
+      &:hover{
+        background-color: #999;
+        color: white;
+        
+      }
+    }
 
     .search{
       flex: 1;
@@ -191,6 +208,16 @@ html, body {
             width: 15px;
           }
         }
+
+        select {
+          height: 30px;
+          padding: 0 5px;
+          border: 1px solid #ddd;
+          margin-right: 20px;
+          cursor: pointer;
+          text-align: center;
+          border-radius: 4px;
+        }
       }
 
       .selected{
@@ -218,8 +245,9 @@ html, body {
   }
 
   .brands{
-    padding: 15px;
-    overflow: hidden;
+    height: calc(100% - 60px);
+    width: 100%;
+    
 
     .brand{
       border-bottom: 1px solid #ddd;
@@ -276,4 +304,6 @@ html, body {
   padding: 15px 25px;
   border-radius: 4px;
   font-size: 16px;
+  z-index: 15;
+  border-radius: 4px;
 }

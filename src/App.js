@@ -4,6 +4,14 @@ import SideBar from './components/SideBar'
 import MainContext from './MainContext'
 import BrandsData from './brands.json'
 import Copied from './components/Copied'
+import {forceCheck, forceVisible} from 'react-lazyload'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Collection from './components/Collection'
 
 function App() {
 
@@ -19,26 +27,28 @@ function App() {
     brandsArray.push(BrandsData[key])
   })
 
+  // scroll yapmadan loaading alanının yüklenip görünmesi
   useEffect(() => {
-    console.log(selectedBrands)
-  }, [selectedBrands])
+    forceCheck()
+  },[brands])
+
 
   // kopyala işleminde yarım saniye sonra yazı kaybolacak
   useEffect(() => {
-    if(copied){
+    if (copied) {
       setTimeout(() => {
         setCopied(false)
       }, 500)
     }
-  },[copied])
+  }, [copied])
 
   // search değiştiğinde filtreleme
   useEffect(() => {
     setBrands(brandsArray.filter(brand => brand.title.toLowerCase().includes(search)))
-  },[search])
+  }, [search])
 
   const data = {
-    brands, selectedBrands, setSelectedBrands, setCopied,search,setSearch
+    brands, selectedBrands, setSelectedBrands, setCopied, search, setSearch
   }
 
   return (
@@ -46,8 +56,24 @@ function App() {
       <MainContext.Provider value={data}>
 
         {copied && <Copied color={copied} />}
+
         <SideBar />
-        <Content />
+
+        <Router>
+
+          <Switch>
+
+            <Route exact path="/">
+              <Content />
+            </Route>
+
+            <Route path="/collection/:slugs">
+							<Collection />
+						</Route>
+
+          </Switch>
+
+        </Router>
 
       </MainContext.Provider>
     </>
